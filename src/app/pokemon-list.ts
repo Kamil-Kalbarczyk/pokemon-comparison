@@ -1,4 +1,4 @@
-export interface Task {
+export interface PokemonList {
     name: string;
     types: string;
     skills: string;

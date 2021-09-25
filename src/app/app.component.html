@@ -15,20 +15,20 @@
 </table> -->
 
 <ul class="pokemon-list">
-  <li class="pokemon-list__pokemon-single" *ngFor='let task of tasks'>
+  <li class="pokemon-list__pokemon-single" *ngFor='let pokemon of pokemonsList'>
     <!-- <form method="GET" id='pokemon'> -->
     <div class="pokemon-list__pokemon-name">
-      <!-- <input type="text" value="{{ task.name }}" disabled> -->
-      <!-- <p #pokemonNameChoose>{{ task.name }}</p> -->
-      <input type="text" value="{{ task.name }}" disabled #pokemonNameChoose>
+      <!-- <input type="text" value="{{ pokemon.name }}" disabled> -->
+      <!-- <p #pokemonNameChoose>{{ pokemon.name }}</p> -->
+      <input type="text" value="{{ pokemon.name }}" disabled #pokemonNameChoose>
     </div>
     <div class="pokemon-list__pokemon-type">
-      <!-- <p>{{ task.types }}</p> -->
-      <input type="text" value="{{ task.types }}" disabled #pokemonTypesChoose>
+      <!-- <p>{{ pokemon.types }}</p> -->
+      <input type="text" value="{{ pokemon.types }}" disabled #pokemonTypesChoose>
     </div>
     <div class="pokemon-list__pokemon-skills">
-      <!-- <p>{{ task.skills }}</p> -->
-      <input type="text" value="{{ task.skills }}" disabled #pokemonSkillsChoose>
+      <!-- <p>{{ pokemon.skills }}</p> -->
+      <input type="text" value="{{ pokemon.skills }}" disabled #pokemonSkillsChoose>
     </div>
     <div class="pokemon-list__pokemon-actions">
       <button class="pokemon-list__pokemon-details-button">Szczegóły</button>

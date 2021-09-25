@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Task } from './task';
+import { PokemonList } from './pokemon-list'
 import { pokemonData } from './data';
 import { Pokemon } from './pokemon-compare';
 
@@ -11,7 +11,7 @@ import { Pokemon } from './pokemon-compare';
 export class AppComponent {
   title = 'Pokemon';
 
-  tasks: Task[] = [
+  pokemonsList: PokemonList[] = [
 
     {
       name: 'Pokemon1',
