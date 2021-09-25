@@ -12,19 +12,21 @@ import data from './api/pokemon.json';
 export class AppComponent {
   title = 'Pokemon';
 
-  pokemonsList: PokemonList[] = [
+  pokemonsList: PokemonList[] = data;
 
-    {
-      name: data[0].name,
-      types: 'Typ1',
-      skills: 'Umiejętności1',
-    },
-    {
-      name: 'Pokemon2',
-      types: 'Typ2',
-      skills: 'Umiejętności2',
-    }
-  ];
+  // pokemonsList: PokemonList[] = [
+
+  //   {
+  //     name: data[0].name,
+  //     types: data[0].types,
+  //     description: data[0].description,
+  //   },
+  //   {
+  //     name: 'Pokemon2',
+  //     types: data[0].types,
+  //     description: 'Umiejętności2',
+  //   }
+  // ];
 
   pokemonsToCompare: PokemonsCompare[] = [];
 
