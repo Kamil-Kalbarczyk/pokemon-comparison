@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PokemonList } from './pokemon-list'
 import { pokemonData } from './data';
-import { Pokemon } from './pokemon-compare';
+import { PokemonsCompare } from './pokemon-compare';
 
 @Component({
   selector: 'app-root',
@@ -25,17 +25,17 @@ export class AppComponent {
     }
   ];
 
-  pokemons: Pokemon[] = [];
+  pokemonsToCompare: PokemonsCompare[] = [];
 
   createPokemon(name: string, types: string, skills: string) {
-    const pokemon: Pokemon = {
+    const pokemon: PokemonsCompare = {
       name,
       types,
       skills,
     }
-    if (this.pokemons.length < 2) {
-      this.pokemons.push(pokemon);
-      console.log(this.pokemons);
+    if (this.pokemonsToCompare.length < 2) {
+      this.pokemonsToCompare.push(pokemon);
+      console.log(this.pokemonsToCompare);
     } else {
       alert('za dużo pokemonów wybranych');
       console.log('za dużo pokemonów wybranych');

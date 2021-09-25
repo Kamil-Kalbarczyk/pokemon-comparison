@@ -1,4 +1,4 @@
-export interface Pokemon {
+export interface PokemonsCompare {
     name: string;
     types: string;
     skills: string;
