@@ -22,6 +22,10 @@
 
 /* Pokemon list section */
 
+/* .pokemon-list {
+  width: 70%;
+} */
+
 .pokemon-list__pokemon-single {
   margin-top: 30px;
   list-style: none;

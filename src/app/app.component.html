@@ -1,5 +1,5 @@
 <form action="" class="searcher">
-  <input type="text" class="searcher__input" placeholder="Wprowadź nazwę Pokemona">
+  <input type="text" class="searcher__input" placeholder="Wprowadź nazwę Pokemona" (keyup)='onKeyUp($event)'>
   <!-- <app-form-search (formChange)="search($event)"></app-form-search> -->
 </form>
 
@@ -15,19 +15,26 @@
 </table> -->
 
 <ul class="pokemon-list">
-  <li class="pokemon-list__pokemon-single">
+  <li class="pokemon-list__pokemon-single" *ngFor='let task of tasks'>
+    <!-- <form method="GET" id='pokemon'> -->
     <div class="pokemon-list__pokemon-name">
-      <p></p>
+      <!-- <input type="text" value="{{ task.name }}" disabled> -->
+      <!-- <p #pokemonNameChoose>{{ task.name }}</p> -->
+      <input type="text" value="{{ task.name }}" disabled #pokemonNameChoose>
     </div>
     <div class="pokemon-list__pokemon-type">
-      <p></p>
+      <!-- <p>{{ task.types }}</p> -->
+      <input type="text" value="{{ task.types }}" disabled #pokemonTypesChoose>
     </div>
     <div class="pokemon-list__pokemon-skills">
-      <p></p>
+      <!-- <p>{{ task.skills }}</p> -->
+      <input type="text" value="{{ task.skills }}" disabled #pokemonSkillsChoose>
     </div>
     <div class="pokemon-list__pokemon-actions">
       <button class="pokemon-list__pokemon-details-button">Szczegóły</button>
-      <button class="pokemon-list__pokemon-compare-button">Porównaj</button>
+      <button class="pokemon-list__pokemon-compare-button"
+        (click)='createPokemon(pokemonNameChoose.value, pokemonTypesChoose.value, pokemonSkillsChoose.value)'>Porównaj</button>
     </div>
+    <!-- </form> -->
   </li>
 </ul>
