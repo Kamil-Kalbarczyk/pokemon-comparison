@@ -13,7 +13,8 @@
     </div>
 
     <div class="pokemon-list__pokemon-skills">
-      <input type="text" value="{{ pokemon.description }}" disabled #pokemonSkillsChoose>
+      <textarea disabled #pokemonSkillsChoose>{{ pokemon.description }}</textarea>
+      <!-- <input type="text" value="{{ pokemon.description }}" disabled #pokemonSkillsChoose> -->
     </div>
 
     <div class="pokemon-list__pokemon-actions">
@@ -24,5 +25,5 @@
   </li>
 </ul>
 
-<div> {{ pokemonsToCompare[0]?.name }} </div>
+<div> {{ pokemonsToCompare[0]?.skills }} </div>
 <div> {{ pokemonsToCompare[1]?.name }} </div>
