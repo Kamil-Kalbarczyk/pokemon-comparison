@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PokemonList } from './pokemon-list'
 import { pokemonData } from './data';
 import { PokemonsCompare } from './pokemon-compare';
+import data from './api/pokemon.json';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
   pokemonsList: PokemonList[] = [
 
     {
-      name: 'Pokemon1',
+      name: data[0].name,
       types: 'Typ1',
       skills: 'Umiejętności1',
     },
