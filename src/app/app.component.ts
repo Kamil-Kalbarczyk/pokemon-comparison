@@ -12,21 +12,11 @@ import data from './api/pokemon.json';
 export class AppComponent {
   title = 'Pokemon';
 
+  // pagination
+  totalLength: any;
+  page: number = 1;
+
   pokemonsList: PokemonList[] = data;
-
-  // pokemonsList: PokemonList[] = [
-
-  //   {
-  //     name: data[0].name,
-  //     types: data[0].types,
-  //     description: data[0].description,
-  //   },
-  //   {
-  //     name: 'Pokemon2',
-  //     types: data[0].types,
-  //     description: 'Umiejętności2',
-  //   }
-  // ];
 
   pokemonsToCompare: PokemonsCompare[] = [];
 
