@@ -86,3 +86,9 @@
   background-color: #123456;
   color: white;
 }
+
+
+/* pagination */
+.my-pagination /deep/ .ngx-pagination .current {
+  background: cadetblue;
+}

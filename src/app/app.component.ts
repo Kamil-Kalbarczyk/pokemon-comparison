@@ -36,6 +36,15 @@ export class AppComponent {
 
   }
 
+  clearCreatePokemon(name: string, types: string, skills: string) {
+    const pokemon: PokemonsCompare = {
+      name,
+      types,
+      skills,
+    }
+    this.pokemonsToCompare.length = 0;
+  }
+
   onKeyUp(event: KeyboardEvent) {
     const target = event.target as HTMLInputElement;
     console.log(target.value);
