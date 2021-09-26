@@ -1,4 +1,4 @@
-<form action="" class="searcher">
+<!-- <form action="" class="searcher">
   <input type="text" class="searcher__input" placeholder="Wprowadź nazwę Pokemona" (keyup)='onKeyUp($event)'>
 </form>
 
@@ -14,7 +14,6 @@
 
     <div class="pokemon-list__pokemon-skills">
       <textarea disabled #pokemonSkillsChoose>{{ pokemon.description }}</textarea>
-      <!-- <input type="text" value="{{ pokemon.description }}" disabled #pokemonSkillsChoose> -->
     </div>
 
     <div class="pokemon-list__pokemon-actions">
@@ -24,6 +23,46 @@
     </div>
   </li>
 </ul>
+
+<div> {{ pokemonsToCompare[0]?.skills }} </div>
+<div> {{ pokemonsToCompare[1]?.name }} </div> -->
+
+
+<div class="wrapper">
+  <input type="text" class="searcher__input" placeholder="Wprowadź nazwę Pokemona" (keyup)='onKeyUp($event)'>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="4">Choose your Pokemon</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Name</td>
+        <td>Types</td>
+        <td>Description</td>
+        <td>Action</td>
+      </tr>
+      <tr *ngFor='let pokemon of pokemonsList'>
+        <td>
+          <input type="text" value="{{ pokemon.name }}" disabled #pokemonNameChoose>
+        </td>
+        <td>
+          <input type="text" value="{{ pokemon.types }}" disabled #pokemonTypesChoose>
+        </td>
+        <td>
+          <textarea disabled #pokemonSkillsChoose>{{ pokemon.description }}</textarea>
+        </td>
+        <td>
+          <button class="pokemon-list__pokemon-details-button">Szczegóły</button>
+          <button class="pokemon-list__pokemon-compare-button" #pokemonInfo
+            (click)='createPokemon(pokemonNameChoose.value, pokemonTypesChoose.value, pokemonSkillsChoose.value)'>Porównaj
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <div> {{ pokemonsToCompare[0]?.skills }} </div>
 <div> {{ pokemonsToCompare[1]?.name }} </div>
