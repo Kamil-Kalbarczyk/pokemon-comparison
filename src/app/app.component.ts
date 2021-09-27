@@ -4,11 +4,16 @@ import { pokemonData } from './data';
 import { PokemonsCompare } from './pokemon-compare';
 import data from './api/pokemon.json';
 
+// modal
+import { ModalService } from './_modal';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
 export class AppComponent {
   title = 'Pokemon';
 
@@ -20,10 +25,12 @@ export class AppComponent {
 
   pokemonsToCompare: PokemonsCompare[] = [];
 
-  createPokemon(name: string, types: string, skills: string) {
+  createPokemon(name: string, types: string, height: number, weight: number, skills: string) {
     const pokemon: PokemonsCompare = {
       name,
       types,
+      height,
+      weight,
       skills,
     }
     if (this.pokemonsToCompare.length < 2) {
@@ -36,10 +43,12 @@ export class AppComponent {
 
   }
 
-  clearCreatePokemon(name: string, types: string, skills: string) {
+  clearCreatePokemon(name: string, types: string, height: any, weight: any, skills: string) {
     const pokemon: PokemonsCompare = {
       name,
       types,
+      height,
+      weight,
       skills,
     }
     this.pokemonsToCompare.length = 0;
@@ -48,5 +57,22 @@ export class AppComponent {
   onKeyUp(event: KeyboardEvent) {
     const target = event.target as HTMLInputElement;
     console.log(target.value);
+  }
+
+
+  // Modal
+  bodyText: any;
+  constructor(private modalService: ModalService) { }
+
+  ngOnInit() {
+    this.bodyText = 'This text can be updated in modal 1';
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
   }
 }
