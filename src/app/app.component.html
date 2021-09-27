@@ -32,8 +32,30 @@
       </tr> -->
       <tr
         *ngFor='let pokemon of pokemonsList | paginate: { itemsPerPage: 15, currentPage: page, totalItems:totalLength }'>
+        <td>
+          {{ pokemon.name }}
+        </td>
+        <td>
+          <ul (click)="openModal('custom-modal-1')">
+            <li>{{ pokemon.types[0] }}</li>
+            <li><span> {{ pokemon.types.length > 1 ? pokemon.types.length-1 : ''  }}</span></li>
+          </ul>
+          <jw-modal id="custom-modal-1">
+            <div> {{ pokemon.types.join(", ") }}</div>
+            <button (click)="closeModal('custom-modal-1');">Zamknij</button>
+          </jw-modal>
+        </td>
+        <td>
+          {{ pokemon.description }}
+        </td>
+        <td>
+          <button class="pokemon-list__pokemon-details-button" (click)="openModal('custom-modal-3')">Szczegóły</button>
+          <button class="pokemon-list__pokemon-compare-button" [disabled]="pokemonsToCompare.length == 2" (click)='createPokemon(pokemon.name, pokemon.types.join(", "), pokemon.height, pokemon.weight,
+            pokemon.description)'>Porównaj
+          </button>
+        </td>
         <jw-modal id="custom-modal-3">
-          <div class="pokemon-details" *ngFor='let pokemon of pokemonsList'>
+          <div class="pokemon-details">
             <div>
               <label for="name">Name:</label>
               <input id="name" type="text" value="{{ pokemon.name}}" readonly>
@@ -61,28 +83,6 @@
           </div>
           <button (click)="closeModal('custom-modal-3')">Zamknij</button>
         </jw-modal>
-        <td>
-          {{ pokemon.name }}
-        </td>
-        <td>
-          <ul (click)="openModal('custom-modal-1')">
-            <li>{{ pokemon.types[0] }}</li>
-            <li><span> {{ pokemon.types.length > 1 ? pokemon.types.length-1 : ''  }}</span></li>
-          </ul>
-          <jw-modal id="custom-modal-1">
-            <div> {{ pokemon.types.join(", ") }}</div>
-            <button (click)="closeModal('custom-modal-1');">Zamknij</button>
-          </jw-modal>
-        </td>
-        <td>
-          {{ pokemon.description }}
-        </td>
-        <td>
-          <button class="pokemon-list__pokemon-details-button" (click)="openModal('custom-modal-3')">Szczegóły</button>
-          <button class="pokemon-list__pokemon-compare-button" [disabled]="pokemonsToCompare.length == 2" (click)='createPokemon(pokemon.name, pokemon.types.join(", "), pokemon.height, pokemon.weight,
-            pokemon.description)'>Porównaj
-          </button>
-        </td>
       </tr>
     </tbody>
   </table>
