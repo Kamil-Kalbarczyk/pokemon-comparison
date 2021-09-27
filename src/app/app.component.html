@@ -47,20 +47,19 @@
         *ngFor='let pokemon of pokemonsList | paginate: { itemsPerPage: 20, currentPage: page, totalItems:totalLength }'>
         <td>
           {{ pokemon.name }}
-          <input type="text" value="" disabled #pokemonNameChoose>
         </td>
         <td>
           <ul (click)="openModal('custom-modal-1')">
-            <li><input type="text" value="{{ pokemon.types[0] }}" disabled #pokemonTypesChoose></li>
+            <li>{{ pokemon.types[0] }}</li>
             <li><span> {{ pokemon.types.length > 1 ? pokemon.types.length-1 : ''  }}</span></li>
           </ul>
           <jw-modal id="custom-modal-1">
             <div> {{ pokemon.types.join(", ") }}</div>
-            <button (click)="closeModal('custom-modal-1');">Close</button>
+            <button (click)="closeModal('custom-modal-1');">Zamknij</button>
           </jw-modal>
         </td>
         <td>
-          <textarea disabled #pokemonSkillsChoose>{{ pokemon.description }}</textarea>
+          {{ pokemon.description }}
         </td>
         <td>
           <button class="pokemon-list__pokemon-details-button" (click)="openModal('custom-modal-3')">Szczegóły</button>
@@ -95,10 +94,7 @@
               <textarea id="description" readonly>{{ pokemon.description }}</textarea>
             </div>
           </div>
-
-          <button class="pokemon-list__pokemon-compare-button" (click)='clearCreatePokemon("", "", "", "", "")'>Skasuj
-            porównanie</button>
-          <button (click)="closeModal('custom-modal-3'); clearCreatePokemon('', '', '', '', '')">Close</button>
+          <button (click)="closeModal('custom-modal-3')">Zamknij</button>
         </jw-modal>
       </tr>
     </tbody>
@@ -170,5 +166,5 @@
   </div>
   <button class="pokemon-list__pokemon-compare-button" (click)='clearCreatePokemon("", "", "", "", "")'>Skasuj
     porównanie</button>
-  <button (click)="closeModal('custom-modal-2'); clearCreatePokemon('', '', '', '', '')">Close</button>
+  <button (click)="closeModal('custom-modal-2'); clearCreatePokemon('', '', '', '', '')">Zamknij</button>
 </jw-modal>
