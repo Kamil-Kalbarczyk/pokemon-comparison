@@ -74,6 +74,68 @@
   <button (click)="closeModal('custom-modal-1'); pokemonDetails.splice(0,1)">Zamknij</button>
 </jw-modal>
 
+<jw-modal id="custom-modal-2">
+  <div class="compare-pokemon_wrapper">
+    <div class="compare-pokemon__first-pokemon">
+      <div>
+        <label for="name">Name:</label>
+        <input id="name" type="text" value="{{ pokemonsToCompare[0]?.name | titlecase}}" readonly>
+      </div>
+
+      <div>
+        <label for="types">Types:</label>
+        <input id="types" type="text" value="{{ pokemonsToCompare[0]?.types}}" readonly>
+      </div>
+
+      <div>
+        <label for="height">Height:</label>
+        <input id="height" type="text" value="{{ pokemonsToCompare[0]?.height }} m" readonly>
+      </div>
+
+      <div>
+        <label for="weight">Weight:</label>
+        <input id="weight" type="text" value="{{ pokemonsToCompare[0]?.weight }} kg" readonly>
+      </div>
+
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description" readonly>{{ pokemonsToCompare[0]?.skills }}</textarea>
+      </div>
+    </div>
+
+    <div class="compare-pokemon__vs">
+      <p>VS</p>
+    </div>
+
+    <div class="compare-pokemon__second-pokemon">
+      <div>
+        <label for="name">Name:</label>
+        <input id="name" type="text" value="{{ pokemonsToCompare[1]?.name | titlecase}}" readonly>
+      </div>
+
+      <div>
+        <label for="types">Types:</label>
+        <input id="types" type="text" value="{{ pokemonsToCompare[1]?.types}}" readonly>
+      </div>
+
+      <div>
+        <label for="height">Height:</label>
+        <input id="height" type="text" value="{{ pokemonsToCompare[1]?.height }} m" readonly>
+      </div>
+
+      <div>
+        <label for="weight">Weight:</label>
+        <input id="weight" type="text" value="{{ pokemonsToCompare[1]?.weight }} kg" readonly>
+      </div>
+
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description" readonly>{{ pokemonsToCompare[1]?.skills }}</textarea>
+      </div>
+    </div>
+  </div>
+  <button (click)="closeModal('custom-modal-2'); pokemonsToCompare.length = 0">Zamknij</button>
+</jw-modal>
 
 
 <jw-modal id="custom-modal-3">
@@ -104,62 +166,4 @@
     </div>
   </div>
   <button (click)="closeModal('custom-modal-3'); pokemonDetails.splice(0,1)">Zamknij</button>
-</jw-modal>
-
-
-<jw-modal id="custom-modal-2">
-  <div class="compare-pokemon__first-pokemon">
-    <div>
-      <label for="name">Name:</label>
-      <input id="name" type="text" value="{{ pokemonsToCompare[0]?.name | titlecase}}" readonly>
-    </div>
-
-    <div>
-      <label for="types">Types:</label>
-      <input id="types" type="text" value="{{ pokemonsToCompare[0]?.types}}" readonly>
-    </div>
-
-    <div>
-      <label for="height">Height:</label>
-      <input id="height" type="text" value="{{ pokemonsToCompare[0]?.height }} m" readonly>
-    </div>
-
-    <div>
-      <label for="weight">Weight:</label>
-      <input id="weight" type="text" value="{{ pokemonsToCompare[0]?.weight }} kg" readonly>
-    </div>
-
-    <div>
-      <label for="description">Description:</label>
-      <textarea id="description" readonly>{{ pokemonsToCompare[0]?.skills }}</textarea>
-    </div>
-  </div>
-
-  <div class="compare-pokemon__second-pokemon">
-    <div>
-      <label for="name">Name:</label>
-      <input id="name" type="text" value="{{ pokemonsToCompare[1]?.name | titlecase}}" readonly>
-    </div>
-
-    <div>
-      <label for="types">Types:</label>
-      <input id="types" type="text" value="{{ pokemonsToCompare[1]?.types}}" readonly>
-    </div>
-
-    <div>
-      <label for="height">Height:</label>
-      <input id="height" type="text" value="{{ pokemonsToCompare[1]?.height }} m" readonly>
-    </div>
-
-    <div>
-      <label for="weight">Weight:</label>
-      <input id="weight" type="text" value="{{ pokemonsToCompare[1]?.weight }} kg" readonly>
-    </div>
-
-    <div>
-      <label for="description">Description:</label>
-      <textarea id="description" readonly>{{ pokemonsToCompare[1]?.skills }}</textarea>
-    </div>
-  </div>
-  <button (click)="closeModal('custom-modal-2'); pokemonsToCompare.length = 0">Zamknij</button>
 </jw-modal>

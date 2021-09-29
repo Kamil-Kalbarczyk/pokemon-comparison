@@ -16,6 +16,7 @@ button {
   border: none;
   font-size: 18px;
   border-radius: 10px;
+  height: 30px;
   cursor: pointer;
   transform: scale(1);
   transition: .3s;
@@ -45,14 +46,14 @@ button:hover:not(:disabled) {
   height: 80px;
 }
 
-.compare-section__vs {
+.compare-section__vs,
+.compare-pokemon__vs {
   font-size: 30px;
   font-weight: bold;
 }
 
 .compare-section__single-compare-pokemon>button {
   width: 80px;
-  height: 30px;
 }
 
 .compare-section__single-compare-pokemon>button:disabled {
@@ -85,7 +86,6 @@ button:hover:not(:disabled) {
 }
 
 .compare-section__buttons-see-clear>button {
-  height: 30px;
   width: 200px;
 }
 
@@ -106,13 +106,13 @@ button:hover:not(:disabled) {
   height: 36px;
   margin-top: 30px;
   padding: 0 5px;
-  margin: 30px 0 20px;
+  margin: 30px 10% 20px;
 }
 
 /* table section */
 
 .main__table {
-  border-spacing: 0.5rem;
+  border-spacing: 8px;
   text-align: center;
 }
 
@@ -133,8 +133,12 @@ td:nth-child(1) {
   width: 120px;
 }
 
-td:nth-child(2) {
-  width: 90px;
+.main__pokemon-types {
+  width: 100px;
+}
+
+td:nth-child(3) {
+  width: 800px
 }
 
 .main__pokemon-types>ul {
@@ -159,16 +163,82 @@ td:nth-child(2) {
 
 .main__buttons>button {
   width: 100px;
-  height: 30px;
 }
 
 
+/* modals */
 
+.pokemon-details label,
+.pokemon-details input,
+.pokemon-details textarea,
+.compare-pokemon_wrapper label,
+.compare-pokemon_wrapper input,
+.compare-pokemon_wrapper textarea {
+  font-size: 20px;
+}
 
+.pokemon-details input,
+.pokemon-details textarea,
+.compare-pokemon_wrapper textarea,
+.compare-pokemon_wrapper input {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: black;
+}
 
+.pokemon-details textarea,
+.compare-pokemon_wrapper textarea {
+  resize: none;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 5px;
+}
 
+/* modals button */
 
+jw-modal button {
+  margin-top: 20px;
+  width: 100px;
+}
 
+/* pokemon compare modal section */
+
+.compare-pokemon_wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 30px;
+}
+
+.compare-pokemon__first-pokemon,
+.compare-pokemon__second-pokemon {
+  width: 40%;
+  max-width: 520px;
+}
+
+.pokemon-details>div,
+.compare-pokemon__first-pokemon>div,
+.compare-pokemon__second-pokemon>div {
+  display: flex;
+  margin-top: 10px;
+}
+
+.compare-pokemon__vs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokemon-details label,
+.compare-pokemon__first-pokemon label,
+.compare-pokemon__second-pokemon label {
+  width: 140px;
+}
+
+#custom-modal-3 button,
+#custom-modal-2 button {
+  margin: 0 auto;
+}
 
 
 
