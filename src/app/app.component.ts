@@ -78,8 +78,6 @@ export class AppComponent {
     this.modalService.close(id);
   }
 
-  // logo
-
   // footer
   footer = "© Kamil Kalbarczyk - zadanie rekrutacyjne"
   getDate(): Date {

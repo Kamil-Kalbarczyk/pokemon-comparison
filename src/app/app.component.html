@@ -45,10 +45,11 @@
           *ngFor='let pokemon of pokemonsList | paginate: { itemsPerPage: 5, currentPage: page, totalItems:totalLength }'>
           <td>
             {{ pokemon.name | titlecase }}
+            <img src="assets/img/pokemons/{{pokemon.id}}.png" alt="">
           </td>
-          <td class="main__pokemon-types">
-            <ul
-              (click)="openModal('custom-modal-1'); pokemonInfo(pokemon.name, pokemon.types.join(', '), pokemon.height, pokemon.weight, pokemon.description)">
+          <td class="main__pokemon-types"
+            (click)="openModal('custom-modal-1'); pokemonInfo(pokemon.name, pokemon.types.join(', '), pokemon.height, pokemon.weight, pokemon.description)">
+            <ul>
               <li>{{ pokemon.types[0] }}</li>
               <li><span> {{ pokemon.types.length > 1 ? pokemon.types.length-1 : ''  }}</span></li>
             </ul>
