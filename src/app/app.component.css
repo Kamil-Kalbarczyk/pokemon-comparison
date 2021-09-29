@@ -6,6 +6,12 @@
   /* color: white; */
 }
 
+.logo {
+  display: block;
+  height: 200px;
+  margin: 0 auto;
+}
+
 h1 {
   padding-top: 20px;
   text-align: center;
