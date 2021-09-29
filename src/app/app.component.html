@@ -64,6 +64,9 @@
     </table>
     <pagination-controls class="my-pagination" (pageChange)="page = $event"></pagination-controls>
   </div>
+  <footer>
+    <p> {{ getDate() | date: 'yyyy' }} {{ footer }} </p>
+  </footer>
 </div>
 
 

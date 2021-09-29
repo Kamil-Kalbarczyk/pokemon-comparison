@@ -240,6 +240,20 @@ jw-modal button {
   margin: 0 auto;
 }
 
+/* footer */
+
+footer {
+  margin-top: 20px;
+  background-color: #000;
+  min-height: 40px;
+}
+
+footer>p {
+  color: white;
+  text-align: center;
+  line-height: 40px;
+}
+
 
 
 

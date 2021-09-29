@@ -77,4 +77,10 @@ export class AppComponent {
   closeModal(id: string) {
     this.modalService.close(id);
   }
+
+  // footer
+  footer = "© Kamil Kalbarczyk - zadanie rekrutacyjne"
+  getDate(): Date {
+    return new Date();
+  }
 }
