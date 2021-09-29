@@ -26,8 +26,9 @@ export class AppComponent {
   // Pokemon to compare function
   pokemonsToCompare: PokemonsCompare[] = [];
 
-  createPokemon(name: string, types: string, height: number, weight: number, skills: string) {
+  createPokemon(id: number, name: string, types: string, height: number, weight: number, skills: string) {
     const pokemon: PokemonsCompare = {
+      id,
       name,
       types,
       height,
@@ -46,8 +47,9 @@ export class AppComponent {
   // Pokemon Details View function
   pokemonDetails: PokemonsCompare[] = [];
 
-  pokemonInfo(name: string, types: string, height: number, weight: number, skills: string) {
+  pokemonInfo(id: number, name: string, types: string, height: number, weight: number, skills: string) {
     const pokemon: PokemonsCompare = {
+      id,
       name,
       types,
       height,

@@ -66,10 +66,6 @@ button:hover:not(:disabled) {
   width: 80px;
 }
 
-.compare-section__single-compare-pokemon>button:disabled {
-  transform: scale(0);
-}
-
 .compare-section__single-compare-pokemon {
   display: flex;
   justify-content: space-evenly;
@@ -78,6 +74,7 @@ button:hover:not(:disabled) {
   width: 30%;
   min-width: 210px;
 }
+
 
 .compare-section__single-compare-pokemon:first-of-type {
   flex-direction: row-reverse;
@@ -93,6 +90,7 @@ button:hover:not(:disabled) {
   justify-content: center;
   align-items: center;
   gap: 50px;
+  margin-top: 20px;
 }
 
 .compare-section__buttons-see-clear>button {
@@ -201,8 +199,8 @@ td:nth-child(3) {
 .pokemon-details textarea,
 .compare-pokemon_wrapper textarea {
   resize: none;
+  height: 150px;
   width: 100%;
-  overflow: hidden;
   padding: 0 5px;
 }
 
@@ -218,14 +216,21 @@ jw-modal button {
 .compare-pokemon_wrapper {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   margin-bottom: 30px;
 }
 
+
 .compare-pokemon__first-pokemon,
 .compare-pokemon__second-pokemon {
-  width: 40%;
   max-width: 520px;
 }
+
+.compare-pokemon__first-pokemon-photo>img,
+.compare-pokemon__second-pokemon-photo>img {
+  transform: scale(2);
+}
+
 
 .pokemon-details>div,
 .compare-pokemon__first-pokemon>div,
@@ -248,7 +253,20 @@ jw-modal button {
 
 #custom-modal-3 button,
 #custom-modal-2 button {
-  margin: 0 auto;
+  margin: 20px auto;
+}
+
+/* details section */
+
+.pokemon-details__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.pokemon-details__image>img {
+  transform: scale(2);
 }
 
 /* footer */

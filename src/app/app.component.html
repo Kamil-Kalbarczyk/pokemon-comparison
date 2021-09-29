@@ -9,6 +9,8 @@
     <p>Wybrano do porównania:</p>
     <div class="compare-section__pokemon-view">
       <div class="compare-section__single-compare-pokemon">
+        <img src="assets/img/pokemons/{{ pokemonsToCompare.length === 0 ? '0' : pokemonsToCompare[0]?.id }}.png"
+          alt="pokemon">
         <p>{{ pokemonsToCompare[0]?.name | titlecase }}</p>
         <button (click)='pokemonsToCompare.shift()' [disabled]="pokemonsToCompare.length < 1">Skasuj</button>
       </div>
@@ -16,6 +18,8 @@
         <p>VS</p>
       </div>
       <div class="compare-section__single-compare-pokemon">
+        <img src="assets/img/pokemons/{{ pokemonsToCompare.length === 2 ? pokemonsToCompare[1]?.id : '0' }}.png"
+          alt="pokemon">
         <p>{{ pokemonsToCompare[1]?.name | titlecase }}</p>
         <button (click)='pokemonsToCompare.pop()' [disabled]="pokemonsToCompare.length < 2">Skasuj</button>
       </div>
@@ -47,8 +51,8 @@
             {{ pokemon.name | titlecase }}
             <img src="assets/img/pokemons/{{pokemon.id}}.png" alt="">
           </td>
-          <td class="main__pokemon-types"
-            (click)="openModal('custom-modal-1'); pokemonInfo(pokemon.name, pokemon.types.join(', '), pokemon.height, pokemon.weight, pokemon.description)">
+          <td class="main__pokemon-types" (click)="openModal('custom-modal-1'); pokemonInfo(pokemon.id, pokemon.name, pokemon.types.join(', '),
+            pokemon.height, pokemon.weight, pokemon.description)">
             <ul>
               <li>{{ pokemon.types[0] }}</li>
               <li><span> {{ pokemon.types.length > 1 ? pokemon.types.length-1 : ''  }}</span></li>
@@ -59,8 +63,8 @@
           </td>
           <td class="main__buttons">
             <button class="pokemon-list__pokemon-details-button"
-              (click)='openModal("custom-modal-3"); pokemonInfo(pokemon.name, pokemon.types.join(", "), pokemon.height, pokemon.weight, pokemon.description)'>Szczegóły</button>
-            <button class="pokemon-list__pokemon-compare-button" [disabled]="pokemonsToCompare.length == 2" (click)='createPokemon(pokemon.name, pokemon.types.join(", "), pokemon.height, pokemon.weight,
+              (click)='openModal("custom-modal-3"); pokemonInfo(pokemon.id, pokemon.name, pokemon.types.join(", "), pokemon.height, pokemon.weight, pokemon.description)'>Szczegóły</button>
+            <button class="pokemon-list__pokemon-compare-button" [disabled]="pokemonsToCompare.length == 2" (click)='createPokemon(pokemon.id, pokemon.name, pokemon.types.join(", "), pokemon.height, pokemon.weight,
             pokemon.description)'>Porównaj
             </button>
           </td>
@@ -110,11 +114,17 @@
         <textarea id="description" readonly>{{ pokemonsToCompare[0]?.skills }}</textarea>
       </div>
     </div>
+    <div class="compare-pokemon__first-pokemon-photo">
+      <img src="assets/img/pokemons/{{ pokemonsToCompare[0]?.id }}.png" alt="pokemon">
+    </div>
 
     <div class="compare-pokemon__vs">
       <p>VS</p>
     </div>
 
+    <div class="compare-pokemon__second-pokemon-photo">
+      <img src="assets/img/pokemons/{{ pokemonsToCompare[1]?.id }}.png" alt="pokemon">
+    </div>
     <div class="compare-pokemon__second-pokemon">
       <div>
         <label for="name">Nazwa:</label>
@@ -147,30 +157,35 @@
 
 
 <jw-modal id="custom-modal-3">
-  <div class="pokemon-details">
-    <div>
-      <label for="name">Nazwa:</label>
-      <input id="name" type="text" value="{{ pokemonDetails[0]?.name | titlecase }}" readonly>
-    </div>
+  <div class="pokemon-details__wrapper">
+    <div class="pokemon-details">
+      <div>
+        <label for="name">Nazwa:</label>
+        <input id="name" type="text" value="{{ pokemonDetails[0]?.name | titlecase }}" readonly>
+      </div>
 
-    <div>
-      <label for="types">Rodzaj:</label>
-      <input id="types" type="text" value="{{ pokemonDetails[0]?.types}}" readonly>
-    </div>
+      <div>
+        <label for="types">Rodzaj:</label>
+        <input id="types" type="text" value="{{ pokemonDetails[0]?.types}}" readonly>
+      </div>
 
-    <div>
-      <label for="height">Wysokość:</label>
-      <input id="height" type="text" value="{{ pokemonDetails[0]?.height }} m" readonly>
-    </div>
+      <div>
+        <label for="height">Wysokość:</label>
+        <input id="height" type="text" value="{{ pokemonDetails[0]?.height }} m" readonly>
+      </div>
 
-    <div>
-      <label for="weight">Waga:</label>
-      <input id="weight" type="text" value="{{ pokemonDetails[0]?.weight }} kg" readonly>
-    </div>
+      <div>
+        <label for="weight">Waga:</label>
+        <input id="weight" type="text" value="{{ pokemonDetails[0]?.weight }} kg" readonly>
+      </div>
 
-    <div>
-      <label for="description">Opis:</label>
-      <textarea id="description" readonly>{{ pokemonDetails[0]?.skills }}</textarea>
+      <div>
+        <label for="description">Opis:</label>
+        <textarea id="description" readonly>{{ pokemonDetails[0]?.skills }}</textarea>
+      </div>
+    </div>
+    <div class="pokemon-details__image">
+      <img src="assets/img/pokemons/{{pokemonDetails[0]?.id}}.png" alt="pokemon">
     </div>
   </div>
   <button (click)="closeModal('custom-modal-3'); pokemonDetails.splice(0,1)">Zamknij</button>
