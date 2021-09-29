@@ -1,50 +1,88 @@
 import { Component } from '@angular/core';
-import { Task } from './task';
+import { PokemonList } from './pokemon-list'
 import { pokemonData } from './data';
-import { Pokemon } from './pokemon-compare';
+import { PokemonsCompare } from './pokemon-compare';
+import data from './api/pokemon.json';
+
+// modal
+import { ModalService } from './_modal';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
 export class AppComponent {
   title = 'Pokemon';
 
-  tasks: Task[] = [
+  // pagination
+  totalLength: any;
+  page: number = 1;
 
-    {
-      name: 'Pokemon1',
-      types: 'Typ1',
-      skills: 'Umiejętności1',
-    },
-    {
-      name: 'Pokemon2',
-      types: 'Typ2',
-      skills: 'Umiejętności2',
-    }
-  ];
+  pokemonsList: PokemonList[] = data;
 
-  pokemons: Pokemon[] = [];
+  // Pokemon to compare function
+  pokemonsToCompare: PokemonsCompare[] = [];
 
-  createPokemon(name: string, types: string, skills: string) {
-    const pokemon: Pokemon = {
+  createPokemon(id: number, name: string, types: string, height: number, weight: number, skills: string) {
+    const pokemon: PokemonsCompare = {
+      id,
       name,
       types,
+      height,
+      weight,
       skills,
     }
-    if (this.pokemons.length < 2) {
-      this.pokemons.push(pokemon);
-      console.log(this.pokemons);
+    if (this.pokemonsToCompare.length < 2) {
+      this.pokemonsToCompare.push(pokemon);
+      console.log(this.pokemonsToCompare);
     } else {
       alert('za dużo pokemonów wybranych');
       console.log('za dużo pokemonów wybranych');
     }
+  };
 
-  }
+  // Pokemon Details View function
+  pokemonDetails: PokemonsCompare[] = [];
+
+  pokemonInfo(id: number, name: string, types: string, height: number, weight: number, skills: string) {
+    const pokemon: PokemonsCompare = {
+      id,
+      name,
+      types,
+      height,
+      weight,
+      skills,
+    }
+    this.pokemonDetails.push(pokemon);
+  };
 
   onKeyUp(event: KeyboardEvent) {
     const target = event.target as HTMLInputElement;
     console.log(target.value);
+  };
+
+  // Modal
+  // bodyText: any;
+  constructor(private modalService: ModalService) { }
+
+  // ngOnInit() {
+  //   this.bodyText = 'This text can be updated in modal 1';
+  // }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
+
+  // footer
+  footer = "© Kamil Kalbarczyk - zadanie rekrutacyjne"
+  getDate(): Date {
+    return new Date();
   }
 }

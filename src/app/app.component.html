@@ -1,40 +1,192 @@
-<form action="" class="searcher">
-  <input type="text" class="searcher__input" placeholder="Wprowadź nazwę Pokemona" (keyup)='onKeyUp($event)'>
-  <!-- <app-form-search (formChange)="search($event)"></app-form-search> -->
-</form>
+<div class="wrapper">
+  <div class="logo-container">
+    <img class="logo" src="/assets/img/Pokemon-Logo.png" alt="image-logo">
+  </div>
+  <h1>Wybierz 2 Pokemony do porównania</h1>
 
-<!-- <table>
-  <tbody>
-    <tr>
-      <td>The table body</td>
-      <td>with two columns</td>
-      <td>with two columns</td>
-      <td>with two columns</td>
-    </tr>
-  </tbody>
-</table> -->
+  <div class="compare-section">
+    <p>Ilość Pokemonów potrzebnych do porównania: <span>{{2 - pokemonsToCompare.length }}</span></p>
+    <p>Wybrano do porównania:</p>
+    <div class="compare-section__pokemon-view">
+      <div class="compare-section__single-compare-pokemon">
+        <img src="assets/img/pokemons/{{ pokemonsToCompare.length === 0 ? '0' : pokemonsToCompare[0]?.id }}.png"
+          alt="pokemon">
+        <p>{{ pokemonsToCompare[0]?.name | titlecase }}</p>
+        <button (click)='pokemonsToCompare.shift()' [disabled]="pokemonsToCompare.length < 1">Skasuj</button>
+      </div>
+      <div class="compare-section__vs">
+        <p>VS</p>
+      </div>
+      <div class="compare-section__single-compare-pokemon">
+        <img src="assets/img/pokemons/{{ pokemonsToCompare.length === 2 ? pokemonsToCompare[1]?.id : '0' }}.png"
+          alt="pokemon">
+        <p>{{ pokemonsToCompare[1]?.name | titlecase }}</p>
+        <button (click)='pokemonsToCompare.pop()' [disabled]="pokemonsToCompare.length < 2">Skasuj</button>
+      </div>
+    </div>
 
-<ul class="pokemon-list">
-  <li class="pokemon-list__pokemon-single" *ngFor='let task of tasks'>
-    <!-- <form method="GET" id='pokemon'> -->
-    <div class="pokemon-list__pokemon-name">
-      <!-- <input type="text" value="{{ task.name }}" disabled> -->
-      <!-- <p #pokemonNameChoose>{{ task.name }}</p> -->
-      <input type="text" value="{{ task.name }}" disabled #pokemonNameChoose>
+    <div class="compare-section__buttons-see-clear">
+      <button (click)="openModal('custom-modal-2')" [disabled]="pokemonsToCompare.length < 2">Pokaż porównanie</button>
+      <button class="pokemon-list__pokemon-compare-button" (click)='pokemonsToCompare.length = 0'
+        [disabled]="pokemonsToCompare.length === 0">Skasuj
+        porównanie</button>
     </div>
-    <div class="pokemon-list__pokemon-type">
-      <!-- <p>{{ task.types }}</p> -->
-      <input type="text" value="{{ task.types }}" disabled #pokemonTypesChoose>
+
+  </div>
+
+  <div class="main">
+    <input type="text" class="main__searcher" placeholder="Wprowadź nazwę Pokemona" (keyup)='onKeyUp($event)'>
+
+    <table class="main__table">
+      <tbody>
+        <tr class="main__table-name">
+          <td>Nazwa</td>
+          <td>Rodzaj</td>
+          <td>Opis</td>
+          <td>Akcja</td>
+        </tr>
+        <tr
+          *ngFor='let pokemon of pokemonsList | paginate: { itemsPerPage: 5, currentPage: page, totalItems:totalLength }'>
+          <td>
+            {{ pokemon.name | titlecase }}
+            <img src="assets/img/pokemons/{{pokemon.id}}.png" alt="">
+          </td>
+          <td class="main__pokemon-types" (click)="openModal('custom-modal-1'); pokemonInfo(pokemon.id, pokemon.name, pokemon.types.join(', '),
+            pokemon.height, pokemon.weight, pokemon.description)">
+            <ul>
+              <li>{{ pokemon.types[0] }}</li>
+              <li><span> {{ pokemon.types.length > 1 ? pokemon.types.length-1 : ''  }}</span></li>
+            </ul>
+          </td>
+          <td>
+            {{ pokemon.description }}
+          </td>
+          <td class="main__buttons">
+            <button class="pokemon-list__pokemon-details-button"
+              (click)='openModal("custom-modal-3"); pokemonInfo(pokemon.id, pokemon.name, pokemon.types.join(", "), pokemon.height, pokemon.weight, pokemon.description)'>Szczegóły</button>
+            <button class="pokemon-list__pokemon-compare-button" [disabled]="pokemonsToCompare.length == 2" (click)='createPokemon(pokemon.id, pokemon.name, pokemon.types.join(", "), pokemon.height, pokemon.weight,
+            pokemon.description)'>Porównaj
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls class="my-pagination" (pageChange)="page = $event"></pagination-controls>
+  </div>
+  <footer>
+    <p> {{ getDate() | date: 'yyyy' }} {{ footer }} </p>
+  </footer>
+</div>
+
+
+<!-- Modals -->
+
+<jw-modal id="custom-modal-1">
+  <div> {{ pokemonDetails[0]?.types }} </div>
+  <button (click)="closeModal('custom-modal-1'); pokemonDetails.splice(0,1)">Zamknij</button>
+</jw-modal>
+
+<jw-modal id="custom-modal-2">
+  <div class="compare-pokemon_wrapper">
+    <div class="compare-pokemon__first-pokemon">
+      <div>
+        <label for="name">Nazwa:</label>
+        <input id="name" type="text" value="{{ pokemonsToCompare[0]?.name | titlecase}}" readonly>
+      </div>
+
+      <div>
+        <label for="types">Rodzaj:</label>
+        <input id="types" type="text" value="{{ pokemonsToCompare[0]?.types}}" readonly>
+      </div>
+
+      <div>
+        <label for="height">Wysokość:</label>
+        <input id="height" type="text" value="{{ pokemonsToCompare[0]?.height }} m" readonly>
+      </div>
+
+      <div>
+        <label for="weight">Waga:</label>
+        <input id="weight" type="text" value="{{ pokemonsToCompare[0]?.weight }} kg" readonly>
+      </div>
+
+      <div>
+        <label for="description">Opis:</label>
+        <textarea id="description" readonly>{{ pokemonsToCompare[0]?.skills }}</textarea>
+      </div>
     </div>
-    <div class="pokemon-list__pokemon-skills">
-      <!-- <p>{{ task.skills }}</p> -->
-      <input type="text" value="{{ task.skills }}" disabled #pokemonSkillsChoose>
+    <div class="compare-pokemon__first-pokemon-photo">
+      <img src="assets/img/pokemons/{{ pokemonsToCompare[0]?.id }}.png" alt="pokemon">
     </div>
-    <div class="pokemon-list__pokemon-actions">
-      <button class="pokemon-list__pokemon-details-button">Szczegóły</button>
-      <button class="pokemon-list__pokemon-compare-button"
-        (click)='createPokemon(pokemonNameChoose.value, pokemonTypesChoose.value, pokemonSkillsChoose.value)'>Porównaj</button>
+
+    <div class="compare-pokemon__vs">
+      <p>VS</p>
     </div>
-    <!-- </form> -->
-  </li>
-</ul>
+
+    <div class="compare-pokemon__second-pokemon-photo">
+      <img src="assets/img/pokemons/{{ pokemonsToCompare[1]?.id }}.png" alt="pokemon">
+    </div>
+    <div class="compare-pokemon__second-pokemon">
+      <div>
+        <label for="name">Nazwa:</label>
+        <input id="name" type="text" value="{{ pokemonsToCompare[1]?.name | titlecase}}" readonly>
+      </div>
+
+      <div>
+        <label for="types">Rodzaj:</label>
+        <input id="types" type="text" value="{{ pokemonsToCompare[1]?.types}}" readonly>
+      </div>
+
+      <div>
+        <label for="height">Wysokość:</label>
+        <input id="height" type="text" value="{{ pokemonsToCompare[1]?.height }} m" readonly>
+      </div>
+
+      <div>
+        <label for="weight">Waga:</label>
+        <input id="weight" type="text" value="{{ pokemonsToCompare[1]?.weight }} kg" readonly>
+      </div>
+
+      <div>
+        <label for="description">Opis:</label>
+        <textarea id="description" readonly>{{ pokemonsToCompare[1]?.skills }}</textarea>
+      </div>
+    </div>
+  </div>
+  <button (click)="closeModal('custom-modal-2'); pokemonsToCompare.length = 0">Zamknij</button>
+</jw-modal>
+
+
+<jw-modal id="custom-modal-3">
+  <div class="pokemon-details__wrapper">
+    <div class="pokemon-details">
+      <div>
+        <label for="name">Nazwa:</label>
+        <input id="name" type="text" value="{{ pokemonDetails[0]?.name | titlecase }}" readonly>
+      </div>
+
+      <div>
+        <label for="types">Rodzaj:</label>
+        <input id="types" type="text" value="{{ pokemonDetails[0]?.types}}" readonly>
+      </div>
+
+      <div>
+        <label for="height">Wysokość:</label>
+        <input id="height" type="text" value="{{ pokemonDetails[0]?.height }} m" readonly>
+      </div>
+
+      <div>
+        <label for="weight">Waga:</label>
+        <input id="weight" type="text" value="{{ pokemonDetails[0]?.weight }} kg" readonly>
+      </div>
+
+      <div>
+        <label for="description">Opis:</label>
+        <textarea id="description" readonly>{{ pokemonDetails[0]?.skills }}</textarea>
+      </div>
+    </div>
+    <div class="pokemon-details__image">
+      <img src="assets/img/pokemons/{{pokemonDetails[0]?.id}}.png" alt="pokemon">
+    </div>
+  </div>
+  <button (click)="closeModal('custom-modal-3'); pokemonDetails.splice(0,1)">Zamknij</button>
+</jw-modal>
