@@ -32,10 +32,10 @@
     <table class="main__table">
       <tbody>
         <tr class="main__table-name">
-          <td>Name</td>
-          <td>Types</td>
-          <td>Description</td>
-          <td>Action</td>
+          <td>Nazwa</td>
+          <td>Rodzaj</td>
+          <td>Opis</td>
+          <td>Akcja</td>
         </tr>
         <tr
           *ngFor='let pokemon of pokemonsList | paginate: { itemsPerPage: 5, currentPage: page, totalItems:totalLength }'>
@@ -81,27 +81,27 @@
   <div class="compare-pokemon_wrapper">
     <div class="compare-pokemon__first-pokemon">
       <div>
-        <label for="name">Name:</label>
+        <label for="name">Nazwa:</label>
         <input id="name" type="text" value="{{ pokemonsToCompare[0]?.name | titlecase}}" readonly>
       </div>
 
       <div>
-        <label for="types">Types:</label>
+        <label for="types">Rodzaj:</label>
         <input id="types" type="text" value="{{ pokemonsToCompare[0]?.types}}" readonly>
       </div>
 
       <div>
-        <label for="height">Height:</label>
+        <label for="height">Wysokość:</label>
         <input id="height" type="text" value="{{ pokemonsToCompare[0]?.height }} m" readonly>
       </div>
 
       <div>
-        <label for="weight">Weight:</label>
+        <label for="weight">Waga:</label>
         <input id="weight" type="text" value="{{ pokemonsToCompare[0]?.weight }} kg" readonly>
       </div>
 
       <div>
-        <label for="description">Description:</label>
+        <label for="description">Opis:</label>
         <textarea id="description" readonly>{{ pokemonsToCompare[0]?.skills }}</textarea>
       </div>
     </div>
@@ -112,27 +112,27 @@
 
     <div class="compare-pokemon__second-pokemon">
       <div>
-        <label for="name">Name:</label>
+        <label for="name">Nazwa:</label>
         <input id="name" type="text" value="{{ pokemonsToCompare[1]?.name | titlecase}}" readonly>
       </div>
 
       <div>
-        <label for="types">Types:</label>
+        <label for="types">Rodzaj:</label>
         <input id="types" type="text" value="{{ pokemonsToCompare[1]?.types}}" readonly>
       </div>
 
       <div>
-        <label for="height">Height:</label>
+        <label for="height">Wysokość:</label>
         <input id="height" type="text" value="{{ pokemonsToCompare[1]?.height }} m" readonly>
       </div>
 
       <div>
-        <label for="weight">Weight:</label>
+        <label for="weight">Waga:</label>
         <input id="weight" type="text" value="{{ pokemonsToCompare[1]?.weight }} kg" readonly>
       </div>
 
       <div>
-        <label for="description">Description:</label>
+        <label for="description">Opis:</label>
         <textarea id="description" readonly>{{ pokemonsToCompare[1]?.skills }}</textarea>
       </div>
     </div>
@@ -144,27 +144,27 @@
 <jw-modal id="custom-modal-3">
   <div class="pokemon-details">
     <div>
-      <label for="name">Name:</label>
+      <label for="name">Nazwa:</label>
       <input id="name" type="text" value="{{ pokemonDetails[0]?.name | titlecase }}" readonly>
     </div>
 
     <div>
-      <label for="types">Types:</label>
+      <label for="types">Rodzaj:</label>
       <input id="types" type="text" value="{{ pokemonDetails[0]?.types}}" readonly>
     </div>
 
     <div>
-      <label for="height">Height:</label>
+      <label for="height">Wysokość:</label>
       <input id="height" type="text" value="{{ pokemonDetails[0]?.height }} m" readonly>
     </div>
 
     <div>
-      <label for="weight">Weight:</label>
+      <label for="weight">Waga:</label>
       <input id="weight" type="text" value="{{ pokemonDetails[0]?.weight }} kg" readonly>
     </div>
 
     <div>
-      <label for="description">Description:</label>
+      <label for="description">Opis:</label>
       <textarea id="description" readonly>{{ pokemonDetails[0]?.skills }}</textarea>
     </div>
   </div>
