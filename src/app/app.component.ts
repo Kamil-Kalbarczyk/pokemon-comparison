@@ -23,6 +23,7 @@ export class AppComponent {
 
   pokemonsList: PokemonList[] = data;
 
+  // Pokemon to compare function
   pokemonsToCompare: PokemonsCompare[] = [];
 
   createPokemon(name: string, types: string, height: number, weight: number, skills: string) {
@@ -40,10 +41,12 @@ export class AppComponent {
       alert('za dużo pokemonów wybranych');
       console.log('za dużo pokemonów wybranych');
     }
+  };
 
-  }
+  // Pokemon Details View function
+  pokemonDetails: PokemonsCompare[] = [];
 
-  clearCreatePokemon(name: string, types: string, height: any, weight: any, skills: string) {
+  pokemonInfo(name: string, types: string, height: number, weight: number, skills: string) {
     const pokemon: PokemonsCompare = {
       name,
       types,
@@ -51,22 +54,21 @@ export class AppComponent {
       weight,
       skills,
     }
-    this.pokemonsToCompare.length = 0;
-  }
+    this.pokemonDetails.push(pokemon);
+  };
 
   onKeyUp(event: KeyboardEvent) {
     const target = event.target as HTMLInputElement;
     console.log(target.value);
-  }
-
+  };
 
   // Modal
-  bodyText: any;
+  // bodyText: any;
   constructor(private modalService: ModalService) { }
 
-  ngOnInit() {
-    this.bodyText = 'This text can be updated in modal 1';
-  }
+  // ngOnInit() {
+  //   this.bodyText = 'This text can be updated in modal 1';
+  // }
 
   openModal(id: string) {
     this.modalService.open(id);

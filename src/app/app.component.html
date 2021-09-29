@@ -14,7 +14,7 @@
       </li>
     </ol>
     <button (click)="openModal('custom-modal-2')" [disabled]="pokemonsToCompare.length < 2">Pokaż porównanie</button>
-    <button class="pokemon-list__pokemon-compare-button" (click)='clearCreatePokemon("", "", "", "", "")'
+    <button class="pokemon-list__pokemon-compare-button" (click)='pokemonsToCompare.length = 0'
       [disabled]="pokemonsToCompare.length === 0">Skasuj
       porównanie</button>
 
@@ -36,59 +36,69 @@
           {{ pokemon.name }}
         </td>
         <td>
-          <ul (click)="openModal('custom-modal-1')">
+          <ul
+            (click)="openModal('custom-modal-1'); pokemonInfo(pokemon.name, pokemon.types.join(', '), pokemon.height, pokemon.weight, pokemon.description)">
             <li>{{ pokemon.types[0] }}</li>
             <li><span> {{ pokemon.types.length > 1 ? pokemon.types.length-1 : ''  }}</span></li>
           </ul>
-          <jw-modal id="custom-modal-1">
-            <div> {{ pokemon.types.join(", ") }}</div>
-            <button (click)="closeModal('custom-modal-1');">Zamknij</button>
-          </jw-modal>
         </td>
         <td>
           {{ pokemon.description }}
         </td>
         <td>
-          <button class="pokemon-list__pokemon-details-button" (click)="openModal('custom-modal-3')">Szczegóły</button>
+          <button class="pokemon-list__pokemon-details-button"
+            (click)='openModal("custom-modal-3"); pokemonInfo(pokemon.name, pokemon.types.join(", "), pokemon.height, pokemon.weight, pokemon.description)'>Szczegóły</button>
           <button class="pokemon-list__pokemon-compare-button" [disabled]="pokemonsToCompare.length == 2" (click)='createPokemon(pokemon.name, pokemon.types.join(", "), pokemon.height, pokemon.weight,
             pokemon.description)'>Porównaj
           </button>
         </td>
-        <jw-modal id="custom-modal-3">
-          <div class="pokemon-details">
-            <div>
-              <label for="name">Name:</label>
-              <input id="name" type="text" value="{{ pokemon.name}}" readonly>
-            </div>
-
-            <div>
-              <label for="types">Types:</label>
-              <input id="types" type="text" value="{{ pokemon.types}}" readonly>
-            </div>
-
-            <div>
-              <label for="height">Height:</label>
-              <input id="height" type="text" value="{{ pokemon.height }} m" readonly>
-            </div>
-
-            <div>
-              <label for="weight">Weight:</label>
-              <input id="weight" type="text" value="{{ pokemon.weight }} kg" readonly>
-            </div>
-
-            <div>
-              <label for="description">Description:</label>
-              <textarea id="description" readonly>{{ pokemon.description }}</textarea>
-            </div>
-          </div>
-          <button (click)="closeModal('custom-modal-3')">Zamknij</button>
-        </jw-modal>
       </tr>
     </tbody>
   </table>
   <pagination-controls class="my-pagination" (pageChange)="page = $event"></pagination-controls>
 
 </div>
+
+
+<!-- Modals -->
+
+<jw-modal id="custom-modal-1">
+  <div> {{ pokemonDetails[0]?.types }} </div>
+  <button (click)="closeModal('custom-modal-1'); pokemonDetails.splice(0,1)">Zamknij</button>
+</jw-modal>
+
+
+
+<jw-modal id="custom-modal-3">
+  <div class="pokemon-details">
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" type="text" value="{{ pokemonDetails[0]?.name }}" readonly>
+    </div>
+
+    <div>
+      <label for="types">Types:</label>
+      <input id="types" type="text" value="{{ pokemonDetails[0]?.types}}" readonly>
+    </div>
+
+    <div>
+      <label for="height">Height:</label>
+      <input id="height" type="text" value="{{ pokemonDetails[0]?.height }} m" readonly>
+    </div>
+
+    <div>
+      <label for="weight">Weight:</label>
+      <input id="weight" type="text" value="{{ pokemonDetails[0]?.weight }} kg" readonly>
+    </div>
+
+    <div>
+      <label for="description">Description:</label>
+      <textarea id="description" readonly>{{ pokemonDetails[0]?.skills }}</textarea>
+    </div>
+  </div>
+  <button (click)="closeModal('custom-modal-3'); pokemonDetails.splice(0,1)">Zamknij</button>
+</jw-modal>
+
 
 <jw-modal id="custom-modal-2">
   <div class="compare-pokemon__first-pokemon">
@@ -144,5 +154,5 @@
       <textarea id="description" readonly>{{ pokemonsToCompare[1]?.skills }}</textarea>
     </div>
   </div>
-  <button (click)="closeModal('custom-modal-2'); clearCreatePokemon('', '', '', '', '')">Zamknij</button>
+  <button (click)="closeModal('custom-modal-2'); pokemonsToCompare.length = 0">Zamknij</button>
 </jw-modal>
