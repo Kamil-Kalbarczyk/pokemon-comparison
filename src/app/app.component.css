@@ -6,9 +6,14 @@
   /* color: white; */
 }
 
+.wrapper {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
 .logo {
   display: block;
-  height: 200px;
+  width: 40%;
   margin: 0 auto;
 }
 
@@ -62,10 +67,6 @@ button:hover:not(:disabled) {
   font-weight: bold;
 }
 
-.compare-section__single-compare-pokemon>button {
-  width: 80px;
-}
-
 .compare-section__single-compare-pokemon {
   display: flex;
   justify-content: space-evenly;
@@ -75,6 +76,14 @@ button:hover:not(:disabled) {
   min-width: 210px;
 }
 
+.compare-section__single-compare-pokemon button {
+  margin: 0 10px;
+  width: 80px;
+}
+
+.compare-section__single-compare-pokemon button:disabled {
+  transform: scale(0);
+}
 
 .compare-section__single-compare-pokemon:first-of-type {
   flex-direction: row-reverse;
@@ -112,7 +121,6 @@ button:hover:not(:disabled) {
   width: 80%;
   font-size: 20px;
   height: 36px;
-  margin-top: 30px;
   padding: 0 5px;
   margin: 30px 10% 20px;
 }
@@ -122,6 +130,10 @@ button:hover:not(:disabled) {
 .main__table {
   border-spacing: 8px;
   text-align: center;
+}
+
+.main__table tbody {
+  width: 100%;
 }
 
 .main__table-name td {
@@ -161,7 +173,7 @@ td:nth-child(3) {
 
 .main__buttons {
   width: 150px;
-  height: 100px;
+  height: 138px;
   display: flex;
   gap: 10px;
   flex-direction: column;
@@ -256,7 +268,7 @@ jw-modal button {
   margin: 20px auto;
 }
 
-/* details section */
+/* details modal section */
 
 .pokemon-details__wrapper {
   display: flex;
@@ -285,5 +297,175 @@ footer>p {
 
 /* pagination */
 .my-pagination /deep/ .ngx-pagination .current {
-  background: cadetblue;
+  background: #123456;
+}
+
+@media (max-width: 500px) {
+
+  h1 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    border-radius: 10px;
+    transform: scale(1);
+    transition: .3s;
+  }
+
+  .compare-section__pokemon-view {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .compare-section__single-compare-pokemon:first-of-type {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .main__table td:nth-child(2) {
+    display: none;
+  }
+
+  .main__table td {
+    width: fit-content;
+    font-size: 14px;
+    padding: 0;
+  }
+
+  .compare-section__single-compare-pokemon p {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .compare-section__vs,
+  .compare-pokemon__vs {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+
+  .main__buttons>button {
+    font-size: 14px;
+    width: 65px;
+    margin: 0 4px;
+  }
+
+}
+
+@media (max-width: 800px) {
+  h1 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    border-radius: 10px;
+    transform: scale(1);
+    transition: .3s;
+  }
+
+  .compare-section__pokemon-view {
+    height: auto;
+  }
+
+  .compare-section__single-compare-pokemon:first-of-type {
+    justify-content: space-between;
+  }
+
+  .main__table td {
+    width: fit-content;
+    font-size: 14px;
+    padding: 0;
+  }
+
+  .compare-section__single-compare-pokemon p {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .compare-section__vs,
+  .compare-pokemon__vs {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+
+  .main__buttons>button {
+    font-size: 14px;
+    width: 65px;
+    margin: 0 4px;
+  }
+
+  .main__searcher {
+    font-size: 14px;
+    height: 30px;
+    padding: 0 5px;
+    margin: 15px 10px;
+  }
+}
+
+@media (max-width:950px) {
+
+  .pokemon-details__wrapper,
+  .compare-pokemon_wrapper {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+
+  .pokemon-details label,
+  .compare-pokemon__first-pokemon label,
+  .compare-pokemon__second-pokemon label {
+    width: auto;
+    padding-right: 2px;
+  }
+
+}
+
+@media (max-width: 1100px) {
+
+  .pokemon-details label,
+  .pokemon-details input,
+  .pokemon-details textarea,
+  .compare-pokemon_wrapper label,
+  .compare-pokemon_wrapper input,
+  .compare-pokemon_wrapper textarea,
+  .pokemon-details input,
+  .pokemon-details textarea,
+  .compare-pokemon_wrapper textarea,
+  .compare-pokemon_wrapper input,
+  jw-modal button {
+    font-size: 14px;
+  }
+
+  .pokemon-details textarea,
+  .compare-pokemon_wrapper textarea {
+    resize: none;
+    height: 70px;
+    width: 100%;
+    padding: 0 5px;
+  }
+
+  /* modals button */
+
+  jw-modal button {
+    width: 70px;
+  }
+
+}
+
+@media (max-width: 1300px) {
+
+  .compare-pokemon__first-pokemon-photo>img,
+  .compare-pokemon__second-pokemon-photo>img {
+    transform: scale(1);
+  }
 }
